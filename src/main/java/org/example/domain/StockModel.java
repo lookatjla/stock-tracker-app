@@ -2,7 +2,6 @@ package org.example.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Map;
 import java.util.Objects;
 
 public class StockModel {
@@ -11,7 +10,6 @@ public class StockModel {
     private LocalDate startDate;
     private LocalDate endDate;
     private BigDecimal currentPrice;
-    private Map<LocalDate, BigDecimal> historicalPrices;
     private String interval;
 
     public StockModel(String symbol, String interval) {
@@ -25,13 +23,12 @@ public class StockModel {
         this.currentPrice = currentPrice;
     }
 
-    public StockModel(String symbol, String companyName, LocalDate startDate, LocalDate endDate, BigDecimal currentPrice, Map<LocalDate, BigDecimal> historicalPrices) {
+    public StockModel(String symbol, String companyName, LocalDate startDate, LocalDate endDate, BigDecimal currentPrice) {
         this.symbol = symbol;
         this.companyName = companyName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.currentPrice = currentPrice;
-        this.historicalPrices = historicalPrices;
     }
 
     public String getSymbol() {
@@ -74,14 +71,6 @@ public class StockModel {
         this.currentPrice = currentPrice;
     }
 
-    public Map<LocalDate, BigDecimal> getHistoricalPrices() {
-        return historicalPrices;
-    }
-
-    public void setHistoricalPrices(Map<LocalDate, BigDecimal> historicalPrices) {
-        this.historicalPrices = historicalPrices;
-    }
-
     public String getInterval() {
         return interval;
     }
@@ -98,7 +87,6 @@ public class StockModel {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", currentPrice=" + currentPrice +
-                ", historicalPrices=" + historicalPrices +
                 '}';
     }
 
@@ -107,11 +95,11 @@ public class StockModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StockModel that = (StockModel) o;
-        return Objects.equals(symbol, that.symbol) && Objects.equals(companyName, that.companyName) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(currentPrice, that.currentPrice) && Objects.equals(historicalPrices, that.historicalPrices);
+        return Objects.equals(symbol, that.symbol) && Objects.equals(companyName, that.companyName) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(currentPrice, that.currentPrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, companyName, startDate, endDate, currentPrice, historicalPrices);
+        return Objects.hash(symbol, companyName, startDate, endDate, currentPrice);
     }
 }
